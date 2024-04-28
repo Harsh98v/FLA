@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Literacy Webapp - Home</title>
+    <style>
+        /* CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 24px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        .nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .nav a:hover {
+            color: #f0f0f0;
+        }
+
+        .main {
+            display: flex;
+            flex-grow: 1;
+            padding: 20px;
+        }
+
+        .sidebar {
+            width: 300px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            margin-right: 20px;
+            font-size: 18px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar h2 {
+            margin-top: 0;
+            font-size: 22px;
+            color: #333;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar a {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            color: #0056b3;
+        }
+
+        .more-details {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #007bff;
+            font-size: 18px;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .more-details:hover {
+            color: #0056b3;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            font-size: 18px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .content h2 {
+            margin-top: 0;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-gap: 20px;
+        }
+
+        .tool-grid a {
+            text-decoration: none;
+            color: #333;
+            display: block;
+            padding: 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .tool-grid a:hover {
+            background-color: #f0f0f0;
+        }
+
+        .tool-grid img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+        .tool-grid h3 {
+            margin: 0;
+            font-size: 22px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <h1>Financial Literacy Webapp</h1>
+    <nav class="nav">
+        <ul>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="settings.html">Settings</a></li>
+            <li><a href="budgetTracker.html">Budget Tracker</a></li>
+            <li><a href="news.html">News &amp; Notifications</a></li>
+            <li><a href="edu_vids.html">Educational Videos</a></li>
+            <li><a href="stocksim.html">Stock Simulation</a></li>
+            <li><a href="salaryProject.html">Salary Projector</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="main">
+    <aside class="sidebar">
+        <h2>My Finances</h2>
+        <ul>
+            <li><a href="#">Total Savings: $10,000</a></li>
+            <li><a href="#">Investments: $5,000</a></li>
+            <li><a href="#">Debts: $2,000</a></li>
+        </ul>
+        <a href="moreDetails.html" class="more-details">See More Details</a>
+    </aside>
+
+    <section class="content">
+        <h2>Welcome, User</h2>
+        <p>Get started managing your finances with ease! Explore the tools below to help you save, invest, and reach your financial goals.</p>
+
+        <div class="tool-grid">
+            <a href="budgetTracker.html">
+                <img src="budgettracker.png" alt="Budget Tracker Icon">
+                <h3>Budget Tracker</h3>
+            </a>
+            <a href="stocksim.html">
+                <img src="stocksimulation.png" alt="Stock Simulation Icon">
+                <h3>Stock Simulation</h3>
+            </a>
+            <a href="salaryProject.html">
+                <img src="salaryprojection.png" alt="Salary Projector Icon">
+                <h3>Salary Projector</h3>
+            </a>
+        </div>
+
+    </section>
+</main>
+
+</body>
+</html>

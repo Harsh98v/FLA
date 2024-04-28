@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            color: #000;
+            padding: 10px 0;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        header h1 {
+          font-weight: 300;
+        }
+
+        main {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            
+        }
+
+        .video-card {
+            width: 75%;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: row;
+            overflow: hidden;
+        }
+
+        .video-card .video-container {
+            width: 75%;
+            padding-bottom: 35%; 
+            overflow: hidden;
+            position: relative;
+        }
+
+        .video-card .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-card .video-info {
+            width: 50%;
+            padding: 20px;
+        }
+
+        .video-card h2 {
+            margin-top: 0;
+            font-size: 24px;
+            font-weight: 200;
+            margin-bottom: 10px;
+        }
+
+        .video-card p {
+            margin: 0;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .search {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 25px;
+            min-width: 50vw;
+        }
+
+        .search-bar {
+            width: 100%;
+            font-size: 20px;
+            margin-bottom: 25px;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .search-btn {
+            margin-left: 10px;
+            margin-bottom: 25px;
+            padding: 10px 10px;
+            font-size: 20px;
+            border-radius: 5px;
+            background-color: #5755FE;
+            border: none;
+            color: #fff;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+
+        .categories {
+            margin: auto;
+            margin-bottom: 20px;
+        }
+
+        .category-btn {
+            margin-right: 10px;
+            padding: 10px 10px;
+            border-radius: 5px;
+            background-color: #5755FE;
+            color: #fff;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .category-btn.active {
+            background-color: #000;
+        }
+
+        .category-btn:hover {
+            background-color: #000;
+        }
+
+        .search-btn:hover {
+            background-color: #000;
+        }
+
+    
+        footer {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Educational Videos</h1>
+        <div class="search">
+          <input type="text" class="search-bar" id="searchBar" placeholder="Search videos...">
+          <button id="searchButton" class="search-btn">Search</button>
+        </div>
+        <div class="categories">
+            <a href="#" class="category-btn active" data-category="all">All</a>
+            <a href="#" class="category-btn" data-category="budgeting">Budgeting</a>
+            <a href="#" class="category-btn" data-category="investing">Investing</a>
+            <a href="#" class="category-btn" data-category="credit-scores">Credit Scores</a>
+            <a href="#" class="category-btn" data-category="retirement-planning">Retirement Planning</a>
+        </div>
+    </header>
+    <main>
+        <div class="video-card" data-category="credit-scores">
+            <div class="video-container">
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/c0TQlgoUHRE" allowfullscreen></iframe>
+            </div>
+            <div class="video-info">
+                <h2>Understanding Credit Scores</h2>
+                <p>
+                  This video provides a concise overview of credit scores, their importance, and how they impact your financial well-being. Discover key tips for improving your credit score and making smarter financial decisions.
+                </p>
+            </div>
+        </div>
+
+        <div class="video-card" data-category="budgeting">
+            <div class="video-container">
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/sVKQn2I4HDM" allowfullscreen></iframe>
+            </div>
+            <div class="video-info">
+                <h2>Introduction to Budgeting</h2>
+                <p>
+This video introduces the basics of budgeting, offering practical tips and strategies to help you take control of your finances. Learn how to set realistic financial goals, track your expenses, and make informed decisions to achieve financial freedom.
+                </p>
+            </div>
+        </div>
+
+        <div class="video-card" data-category="investing">
+            <div class="video-container">
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/lNdOtlpmH5U" allowfullscreen></iframe>
+            </div>
+            <div class="video-info">
+                <h2>Investing for Beginners</h2>
+                <p>
+This video is your gateway to understanding the fundamentals of investing. Explore different investment options, learn how to create a diversified portfolio, and discover essential strategies for long-term wealth growth. Whether you're just starting or looking to expand your investment knowledge, this video has something for everyone.
+                </p>
+            </div>
+        </div>
+
+        <div class="video-card" data-category="credit-scores">
+            <div class="video-container">
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/0ddgrHehprk" allowfullscreen></iframe>
+            </div>
+            <div class="video-info">
+                <h2>Credit Cards 101</h2>
+                <p>
+This video breaks down the complexities of credit cards into easy-to-understand concepts. Learn about credit card basics, such as how they work, their benefits and risks, how to choose the right card for your needs, and essential tips for responsible credit card usage. 
+                </p>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 FLA</p>
+    </footer>
+    <script>
+        const searchBar = document.getElementById('searchBar');
+        const searchButton = document.getElementById('searchButton');
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const videoCards = document.querySelectorAll('.video-card');
+
+        // Filter videos based on search input
+        function filterBySearch() {
+            const searchText = searchBar.value.trim().toLowerCase();
+
+            videoCards.forEach(card => {
+                const title = card.querySelector('h2').innerText.toLowerCase();
+
+                const isVisible = title.includes(searchText);
+
+                card.style.display = isVisible ? 'flex' : 'none';
+            });
+        }
+
+        // Filter videos based on category
+        function filterByCategory(category) {
+            searchBar.value = ""; 
+            videoCards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+
+                const isVisible = category === 'all' || cardCategory === category;
+
+                card.style.display = isVisible ? 'flex' : 'none';
+            });
+        }
+
+        // Event listener for search input
+ searchButton.addEventListener('click', () => {
+            filterBySearch();
+        });
+
+        // Event listener for category buttons
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                const selectedCategory = button.getAttribute('data-category');
+                filterByCategory(selectedCategory);
+            });
+        });
+
+        // Initial call to filterByCategory with 'all' as the default category
+        filterByCategory('all');
+    </script>
+</body>
+</html>

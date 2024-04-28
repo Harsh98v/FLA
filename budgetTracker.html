@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Budget Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 20px;
+    }
+    .section {
+      padding: 10px;
+      border-radius: 3px;
+      background-color: #eee;
+    }
+    h2, h3 {
+      color: #333;
+      margin-bottom: 5px;
+    }
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #666;
+    }
+    .form-group input[type="text"],
+    .form-group input[type="number"] {
+      width: 90%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      border-radius: 3px;
+      transition: border-color 0.3s ease;
+    }
+    .form-group input[type="text"]:focus,
+    .form-group input[type="number"]:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+    .form-group button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .form-group button:hover {
+      background-color: #0056b3;
+    }
+    .warning {
+      color: red;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .error {
+      color: red;
+      font-size: 0.8rem;
+      margin-top: 5px;
+    }
+    #expenseList {
+      list-style: none;
+      padding: 0px;
+    }
+    #expenseList li {
+      margin-bottom: 5px;
+      padding: 5px;
+    }
+    #progress-bar {
+      height: 10px;
+      background-color: #ddd;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    #progress {
+      height: 100%;
+      background-color: #007bff;
+      transition: width 0.3s ease;
+    }
+    @media only screen and (max-width: 600px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+      .section {
+        margin-bottom: 15px;
+      }
+    }
+    .back-button {
+        position: fixed; /* Fix the button to the bottom of the screen */
+        bottom: 20px; /* Adjust the vertical position */
+        left: 50%; /* Center the button horizontally */
+        transform: translateX(-50%); /* Offset to center */
+        
+        background-color: #388e3c; /* Green color for the button */
+        color: #fff; /* White text color */
+        padding: 10px 20px; /* Add some padding */
+        border: none; /* Remove default border */
+        border-radius: 5px; /* Add rounded corners */
+        cursor: pointer; /* Change cursor to indicate clickability */
+        text-decoration: none; /* Remove underline from the link text */
+    }
+    .back-button .back-link {  /* Target the anchor element within the button */
+        color: white;
+        text-decoration: none;
+      }
+    
+    .back-button:hover {
+        background-color: #2e602b; /* Darker green on hover */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <section class="section">
+      <h2>Budget Tracker</h2>
+      <div class="form-group">
+        <label for="expenseLimit">Set Your Expense Limit ($):</label>
+        <input type="number" id="expenseLimit" name="expenseLimit" placeholder="Enter your budget">
+      </div>
+      <p id="expenseWarning" class="warning"></p>
+      <div id="progress-bar">
+        <div id="progress"></div>
+      </div>
+    </section>
+    <section class="section">
+      <h3>Add New Expense</h3>
+      <form id="expenseForm">
+        <div class="form-group">
+          <label for="expenseName">Expense Name:</label>
+          <input type="text" id="expenseName" name="expenseName" placeholder="Enter expense name">
+          <span class="error" id="nameError"></span>
+        </div>
+        <div class="form-group">
+          <label for="expenseAmount">Expense Amount ($):</label>
+          <input type="number" id="expenseAmount" name="expenseAmount" placeholder="Enter expense amount">
+          <span class="error" id="amountError"></span>
+        </div>
+        <button type="button" onclick="addExpense()">Add Expense</button>
+      </form>
+    </section>
+    <section class="section">
+      <h3>Expenses</h3>
+      <ul id="expenseList"></ul>
+    </section>
+    <section class="section">
+      <h3>Total Expenses</h3>
+      <p id="totalExpenses">$0.00</p>
+    </section>
+    <div class="back-button">
+        <a href="mainPage.html" class="back-link">Back</a>
+    </div>
+  </div>
+
+  <script>
+    let expenses = [];
+    let expenseLimit = null;
+
+    function addExpense() {
+      const expenseName = document.getElementById('expenseName').value.trim();
+      const expenseAmount = parseFloat(document.getElementById('expenseAmount').value);
+
+      // Reset error messages
+      document.getElementById('nameError').textContent = '';
+      document.getElementById('amountError').textContent = '';
+
+      let isValid = true;
+      if (!expenseName) {
+        document.getElementById('nameError').textContent = 'Please enter an expense name.';
+        isValid = false;
+      }
+      if (isNaN(expenseAmount) || expenseAmount <= 0) {
+        document.getElementById('amountError').textContent = 'Please enter a valid expense amount.';
+        isValid = false;
+      }
+
+      if (isValid) {
+        expenses.push({ name: expenseName, amount: expenseAmount });
+        updateExpenseList();
+        calculateTotalExpenses();
+        checkExpenseLimit();
+        document.getElementById('expenseName').value = '';
+        document.getElementById('expenseAmount').value = '';
+      }
+    }
+
+    function updateExpenseList() {
+      const expenseList = document.getElementById('expenseList');
+      expenseList.innerHTML = '';
+      expenses.forEach(expense => {
+        const li = document.createElement('li');
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.addEventListener('click', function() {
+          expenses = expenses.filter(item => item !== expense);
+          updateExpenseList();
+          calculateTotalExpenses();
+          checkExpenseLimit();
+        });
+        li.textContent = `${expense.name}: $${expense.amount.toFixed(2)}`;
+        li.appendChild(deleteButton);
+        expenseList.appendChild(li);
+      });
+    }
+
+    function calculateTotalExpenses() {
+      const totalExpenses = expenses.reduce((total, expense) => total + expense.amount, 0);
+      document.getElementById('totalExpenses').textContent = `$${totalExpenses.toFixed(2)}`;
+      updateProgressBar(totalExpenses);
+    }
+
+    function checkExpenseLimit() {
+      if (expenseLimit !== null && getTotalExpenses() > expenseLimit) {
+        document.getElementById('expenseWarning').textContent = 'Total expenses have exceeded the expense limit!';
+      } else {
+        document.getElementById('expenseWarning').textContent = '';
+      }
+    }
+
+    function getTotalExpenses() {
+      return expenses.reduce((total, expense) => total + expense.amount, 0);
+    }
+
+    function updateProgressBar(totalExpenses) {
+      const progressBar = document.getElementById('progress');
+      if (expenseLimit === null) {
+        progressBar.style.width = '0%';
+      } else {
+        const progress = Math.min(totalExpenses / expenseLimit, 1) * 100; // Limit progress to 100%
+        progressBar.style.width = `${progress}%`;
+      }
+    }
+
+    document.getElementById('expenseLimit').addEventListener('change', function() {
+      expenseLimit = parseFloat(this.value);
+      checkExpenseLimit();
+      updateProgressBar(getTotalExpenses());
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .profile-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .profile-header img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        .profile-header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .profile-header p {
+            margin: 5px 0;
+            font-size: 16px;
+            color: #666;
+        }
+        .profile-details {
+            margin-top: 20px;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        .profile-details p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+        .profile-details label {
+            font-weight: bold;
+        }
+        .back-button {
+            position: fixed; /* Fix the button to the bottom of the screen */
+            bottom: 20px; /* Adjust the vertical position */
+            left: 50%; /* Center the button horizontally */
+            transform: translateX(-50%); /* Offset to center */
+            
+            background-color: #388e3c; /* Green color for the button */
+            color: #fff; /* White text color */
+            padding: 10px 20px; /* Add some padding */
+            border: none; /* Remove default border */
+            border-radius: 5px; /* Add rounded corners */
+            cursor: pointer; /* Change cursor to indicate clickability */
+            text-decoration: none; /* Remove underline from the link text */
+        }
+        .back-button .back-link {  /* Target the anchor element within the button */
+            color: white;
+            text-decoration: none;
+          }
+        
+        .back-button:hover {
+            background-color: #2e602b; /* Darker green on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-header">
+            <img src="profile-pic.jpg" alt="Profile Picture">
+            <h1>John Doe</h1>
+            <p>Financial Enthusiast</p>
+        </div>
+        <div class="profile-details">
+            <p><label>Email:</label> johndoe@example.com</p>
+            <p><label>Location:</label> New York City</p>
+            <p><label>Education:</label> Bachelor's in Finance</p>
+            <p><label>Interests:</label> Stock Market, Personal Finance</p>
+        </div>
+    </div>
+    <div class="back-button">
+        <a href="mainPage.html" class="back-link">Back</a>
+    </div>
+</body>
+</html>
